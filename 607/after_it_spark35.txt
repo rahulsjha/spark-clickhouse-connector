@@ -1,0 +1,19 @@
+$ # branch fix/pushdown-timestamp-catalog-tz, ClickHouse 25.3 in Docker, JVM + session zone America/Los_Angeles, catalog tz=server (UTC)
+$ ./gradlew :clickhouse-spark-it-3.5_2.13:test --tests=ClickHouseSinglePushDownTimeZoneSuite -Dspark_binary_version=3.5 -Dscala_binary_version=2.13
+Run starting. Expected test count is: 2
+ClickHouseSinglePushDownTimeZoneSuite:
+- pushed-down timestamp filter uses the catalog time zone (7 seconds, 65 milliseconds)
+  + java8API=false connector=3840 SQL: SELECT COUNT(*) FROM `db_pushdown_tz`.`tbl_pushdown_tz_41039240404083` WHERE (1=1) AND ((1=1) AND (`ts` >= '2024-01-05 08:00:00') AND (1=1)) 
+  + java8API=true connector=3840 SQL: SELECT COUNT(*) FROM `db_pushdown_tz`.`tbl_pushdown_tz_41039240404083` WHERE (1=1) AND ((1=1) AND (`ts` >= '2024-01-05 08:00:00') AND (1=1)) 
+- pushed-down sub-second timestamp filter on a DateTime column (8 seconds, 334 milliseconds)
+  + java8API=false connector=3839 SQL: SELECT COUNT(*) FROM `db_pushdown_tz`.`tbl_pushdown_tz_41046301097291` WHERE (1=1) AND ((1=1) AND (`ts` > toDateTime64('2024-01-05 08:00:00.5', 6, 'UTC')) AND (1=1)) 
+  + java8API=true connector=3839 SQL: SELECT COUNT(*) FROM `db_pushdown_tz`.`tbl_pushdown_tz_41046301097291` WHERE (1=1) AND ((1=1) AND (`ts` > toDateTime64('2024-01-05 08:00:00.5', 6, 'UTC')) AND (1=1)) 
+  + java8API=false connector=6241 SQL: SELECT COUNT(*) FROM `db_pushdown_tz`.`tbl_pushdown_tz_41046301097291` WHERE (1=1) AND ((1=1) AND (`ts` <= toDateTime64('2024-01-05 08:00:00.5', 6, 'UTC')) AND (1=1)) 
+  + java8API=true connector=6241 SQL: SELECT COUNT(*) FROM `db_pushdown_tz`.`tbl_pushdown_tz_41046301097291` WHERE (1=1) AND ((1=1) AND (`ts` <= toDateTime64('2024-01-05 08:00:00.5', 6, 'UTC')) AND (1=1)) 
+  + java8API=false connector=1 SQL: SELECT `ts` FROM `db_pushdown_tz`.`tbl_pushdown_tz_41046301097291` WHERE (1=1) AND ((1=1) AND (1=1)) 
+  + java8API=true connector=1 SQL: SELECT `ts` FROM `db_pushdown_tz`.`tbl_pushdown_tz_41046301097291` WHERE (1=1) AND ((1=1) AND (1=1)) 
+Run completed in 27 seconds, 365 milliseconds.
+Total number of tests run: 2
+Suites: completed 2, aborted 0
+Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
+BUILD SUCCESSFUL in 1m 27s

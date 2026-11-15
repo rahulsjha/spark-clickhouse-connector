@@ -1,0 +1,16 @@
+$ # branch fix/pushdown-timestamp-catalog-tz
+$ ./gradlew :clickhouse-spark-3.5_2.13:test --tests=SQLHelperSuite -Dspark_binary_version=3.5 -Dscala_binary_version=2.13
+Run starting. Expected test count is: 7
+SQLHelperSuite:
+- Timestamp literal is rendered in the catalog zone, not the JVM zone (146 milliseconds)
+- Instant literal is rendered in the catalog zone, not the JVM zone (3 milliseconds)
+- Timestamp and Instant literals render the same (3 milliseconds)
+- sub-second Timestamp and Instant literals keep their precision as a UTC DateTime64 (2 milliseconds)
+- IN with whole-second timestamps is pushed in the catalog zone (7 milliseconds)
+- IN with a sub-second timestamp is not pushed (9 milliseconds)
+- Date literal stays a calendar date (118 milliseconds)
+Run completed in 867 milliseconds.
+Total number of tests run: 7
+Suites: completed 2, aborted 0
+Tests: succeeded 7, failed 0, canceled 0, ignored 0, pending 0
+BUILD SUCCESSFUL in 54s

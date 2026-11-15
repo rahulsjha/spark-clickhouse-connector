@@ -1,0 +1,9 @@
+$ ClickHouse 25.3, table t(ts DateTime, id UInt64) ORDER BY ts, 10080 rows, index_granularity=1024
+$ EXPLAIN indexes=1 SELECT count() FROM t WHERE ts > toDateTime64('2024-01-05 08:00:00.5', 6, 'UTC')
+  PrimaryKey  Keys: ts  Condition: (_CAST(ts) in ('1704441600.5', +Inf))  Parts: 1/1  Granules: 4/10
+$ EXPLAIN indexes=1 SELECT count() FROM t WHERE ts > '2024-01-05 08:00:00'
+  PrimaryKey  Keys: ts  Condition: (ts in [1704441601, +Inf))            Parts: 1/1  Granules: 4/10
+$ SELECT count() FROM t WHERE ts >= '2024-01-05 00:00:00.5'      -- what the old Instant branch sent
+  Code: 53. DB::Exception: Cannot convert string '2024-01-05 00:00:00.5' to type DateTime. (TYPE_MISMATCH)
+$ SELECT count() FROM t WHERE ts IN ('2024-01-05 00:00:00.5')    -- same for IN, hence IN with sub-second is left to Spark
+  Code: 53. DB::Exception: Cannot convert string '2024-01-05 00:00:00.5' to type DateTime. (TYPE_MISMATCH)

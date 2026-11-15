@@ -1,0 +1,23 @@
+# branch fix/pushdown-timestamp-catalog-tz @ a029a80b, JDK 17 (zulu), ClickHouse 25.3 via Docker (colima), macOS arm64
+spotlessCheck 3.5/2.13 | BUILD SUCCESSFUL in 5s | 
+:clickhouse-spark-3.5_2.13:test (full unit task) | BUILD SUCCESSFUL in 27s | Total number of tests run: 101 Tests: succeeded 101, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-3.5_2.13:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 8s | 
+spotlessCheck 4.0/2.13 | BUILD SUCCESSFUL in 41s | 
+:clickhouse-spark-4.0_2.13:test (full unit task) | BUILD SUCCESSFUL in 3m 20s | Total number of tests run: 108 Tests: succeeded 108, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-4.0_2.13:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 5m 27s | Total number of tests run: 2 Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0 
+spotlessCheck 4.1/2.13 | BUILD SUCCESSFUL in 33s | 
+:clickhouse-spark-4.1_2.13:test (full unit task) | BUILD SUCCESSFUL in 7m 8s | Total number of tests run: 108 Tests: succeeded 108, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-4.1_2.13:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 16m 10s | Total number of tests run: 2 Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0 
+spotlessCheck 4.2/2.13 | BUILD SUCCESSFUL in 3m 7s | 
+:clickhouse-spark-4.2_2.13:test (full unit task) | BUILD SUCCESSFUL in 8m 7s | Total number of tests run: 110 Tests: succeeded 110, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-4.2_2.13:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 4m 8s | Total number of tests run: 2 Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0 
+spotlessCheck 3.3/2.12 | BUILD SUCCESSFUL in 3m 52s | 
+:clickhouse-spark-3.3_2.12:test (full unit task) | BUILD SUCCESSFUL in 9m 8s | Total number of tests run: 77 Tests: succeeded 77, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-3.3_2.12:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 7m 49s | Total number of tests run: 2 Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0 
+spotlessCheck 3.4/2.12 | BUILD SUCCESSFUL in 2m 23s | 
+:clickhouse-spark-3.4_2.12:test (full unit task) | BUILD SUCCESSFUL in 4m 1s | Total number of tests run: 101 Tests: succeeded 101, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-3.4_2.12:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 5m 15s | Total number of tests run: 2 Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0 
+spotlessCheck 3.5/2.12 | BUILD SUCCESSFUL in 29s | 
+:clickhouse-spark-3.5_2.12:test (full unit task) | BUILD SUCCESSFUL in 2m 15s | Total number of tests run: 101 Tests: succeeded 101, failed 0, canceled 0, ignored 0, pending 0 
+:clickhouse-spark-it-3.5_2.12:test --tests=ClickHouseSinglePushDownTimeZoneSuite | BUILD SUCCESSFUL in 2m 56s | Total number of tests run: 2 Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0 
+# note: the 3.5/2.13 IT line ran 0 tests because the task was up to date; the same suite ran green on this code earlier (after_it_spark35.txt)
